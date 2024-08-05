@@ -1,0 +1,37 @@
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio Code specific files
+.vscode/
+
+# Ignore NuGet packages
+*.nupkg
+# The packages folder can be ignored if you enable package restore
+**/packages/*
+
+# Ignore the folder with the build output
+build/
+
+# Ignore various other files
+*.log
+*.lock.json
+*.bak
+*.tmp
+
+# Ignore IDE folders
+.idea/
+.vscode/
+
+# Ignore ReSharper files
+_ReSharper*/
+*.ReSharper
+
+
+.vs/

@@ -1,0 +1,206 @@
+syntax = "proto3";
+
+option csharp_namespace = "LibrarySystem";
+
+import "google/api/annotations.proto";
+
+package library;
+
+
+service Library {
+
+  rpc CreateBook (CreateBookRequest) returns (CreateBookResponse){
+		option (google.api.http) = {
+			post: "/book",
+			body: "*"
+		};
+	}
+
+  rpc GetBook (GetBookRequest) returns (GetBookResponse){
+		option (google.api.http) = {
+			get: "/book/{id}"
+		};
+	}
+
+  rpc ListBooks (ListBooksRequest) returns (ListBooksResponse){
+		option (google.api.http) = {
+			get: "/book"
+		};
+	}
+
+  rpc UpdateBook (UpdateBookRequest) returns (UpdateBookResponse){
+		option (google.api.http) = {
+			put: "/book",
+			body: "*"
+		};
+	}
+
+  rpc DeleteBook (DeleteBookRequest) returns (DeleteBookResponse){
+		option (google.api.http) = {
+			delete: "/book/{id}"
+		};
+	}
+
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse){
+		option (google.api.http) = {
+			post: "/user",
+			body: "*"
+		};
+	}
+
+  rpc GetUser (GetUserRequest) returns (GetUserResponse){
+		option (google.api.http) = {
+			get: "/user/{id}"
+		};
+	}
+
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse){
+		option (google.api.http) = {
+			get: "/user"
+		};
+	}
+
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse){
+		option (google.api.http) = {
+			put: "/user",
+			body: "*"
+		};
+	}
+
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse){
+		option (google.api.http) = {
+			delete: "/user"
+		};
+	}
+
+  rpc BorrowBook (BorrowBookRequest) returns (BorrowBookResponse){
+		option (google.api.http) = {
+			put: "/book/borrow",
+			body: "*"
+		};
+	}
+
+  rpc ReturnBook (ReturnBookRequest) returns (ReturnBookResponse){
+		option (google.api.http) = {
+			put: "/book/return",
+			body: "*"
+		};
+	}
+
+}
+
+
+message CreateBookRequest {
+	string title = 1;
+	string author = 2;
+	string isbn = 3;
+	int32 publication_year = 4;
+	string genre = 5;
+}
+
+message CreateBookResponse {
+	int32 id = 1;
+}
+
+message GetBookRequest {
+	int32 id = 1;
+}
+
+message GetBookResponse {
+	int32 id = 1;
+	string title = 2;
+	string author = 3;
+	string isbn = 4;
+	int32 publication_year = 5;
+	string genre = 6;
+	bool available = 7;
+}
+
+message ListBooksRequest { }
+
+message ListBooksResponse {
+	repeated GetBookResponse book = 1;
+}
+
+message UpdateBookRequest {
+	int32 id = 1;
+	string title = 2;
+	string author = 3;
+	string isbn = 4;
+	int32 publication_year = 5;
+	string genre = 6;
+}
+
+message UpdateBookResponse {
+	bool success = 1;
+}
+
+message DeleteBookRequest {
+	int32 id = 1;
+}
+
+message DeleteBookResponse {
+  bool success = 1;
+}
+
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+}
+
+message CreateUserResponse {
+  int32 id = 1;
+}
+
+message GetUserRequest {
+  int32 id = 1;
+}
+
+message GetUserResponse {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message ListUsersRequest { }
+
+message ListUsersResponse {
+  repeated GetUserResponse user = 1;
+}
+
+message UpdateUserRequest {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UpdateUserResponse {
+  bool success = 1;
+}
+
+message DeleteUserRequest {
+  int32 id = 1;
+}
+
+message DeleteUserResponse {
+  bool success = 1;
+}
+
+message BorrowBookRequest {
+  int32 book_id = 1;
+  int32 user_id = 2;
+}
+
+message BorrowBookResponse {
+  bool success = 1;
+}
+
+message ReturnBookRequest {
+  int32 book_id = 1;
+  int32 user_id = 2;
+}
+
+message ReturnBookResponse {
+  bool success = 1;
+}
